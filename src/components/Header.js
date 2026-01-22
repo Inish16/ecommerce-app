@@ -6,25 +6,18 @@ function Header() {
   const { cart } = useCart();
   const { dark, setDark } = useTheme();
 
+  const count = cart.reduce((s, i) => s + i.qty, 0);
+
   return (
-    // <header className="header">
-    //   <Link to="/">React Store</Link>
-    //   <Link to="/cart">Cart ({cart.length})</Link>
-    //   <button onClick={() => setDark(!dark)}>
-    //     {dark ? "Light" : "Dark"}
-    //   </button>
-    // </header>
     <header className="header">
-      <div className="header-left">
-        <Link className="logo" to="/">React Store</Link>
-      </div>
+      <Link className="logo" to="/">React Store</Link>
 
       <div className="header-right">
-        <Link to="/cart" className="cart-link">
-          Cart <span className="badge">{cart.length}</span>
+        <Link to="/cart">
+          Cart <span className="badge">{count}</span>
         </Link>
 
-        <button className="theme-btn" onClick={() => setDark(!dark)}>
+        <button onClick={() => setDark(!dark)}>
           {dark ? "Light" : "Dark"}
         </button>
       </div>
